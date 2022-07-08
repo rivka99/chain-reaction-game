@@ -13,21 +13,12 @@ const games = [
     ['last','straw','berry','picking','fights','off'],
     ['tissue','paper','boy','friend','band','wagon'],
     ['wheel','chair','board','member','state','capital'],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    [],
-    []
+    ['spit','ball','game','boy','friend','ship'],
+    ['tap','dance','music','hall','mark','down'],
+    ['down','grade','school','teacher','training','wheels'],
+    ['spiral','notebook','computer','science','fair','trade'],
+    ['sneak','attack','helicopter','parent','company','owner'],
+    ['foot','traffic','jam','packed','lunch','break']
 ]
 
 export default games;
