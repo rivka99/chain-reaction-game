@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/chain-reaction/static/css/main.5bf080bb.css",
+    "main.js": "/chain-reaction/static/js/main.b4face73.js",
+    "static/js/89.31cac4c4.chunk.js": "/chain-reaction/static/js/89.31cac4c4.chunk.js",
+    "index.html": "/chain-reaction/index.html",
+    "main.5bf080bb.css.map": "/chain-reaction/static/css/main.5bf080bb.css.map",
+    "main.b4face73.js.map": "/chain-reaction/static/js/main.b4face73.js.map",
+    "89.31cac4c4.chunk.js.map": "/chain-reaction/static/js/89.31cac4c4.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.5bf080bb.css",
+    "static/js/main.b4face73.js"
+  ]
+}
