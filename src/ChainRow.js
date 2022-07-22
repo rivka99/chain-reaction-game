@@ -3,7 +3,6 @@ import React from "react";
 export default function ChainRow(props) {
   function colorChange() {
     console.log(props.word);
-    let today;
     const inputRow = document.querySelector("#rowInput" + props.word);
     //when part of the input is being typed and is right, turns blue
     if (
@@ -20,8 +19,7 @@ export default function ChainRow(props) {
           const gameStatEl1 = document.createElement("h2");
           gameStatEl1.textContent = `Awesome, YOU WON!`;
           document.querySelector(".gameStatus").appendChild(gameStatEl1);
-          today = new Date();
-          localStorage["lastPlayed"] = `${today}`;
+          setPlayed();
         } else {
           props.setGameStatus(props.gameStatus + 1);
           inputRow.classList.remove("openRow");
@@ -36,7 +34,7 @@ export default function ChainRow(props) {
         const gameStatEl = document.createElement("h2");
         gameStatEl.textContent = `Game Over, you got ${props.gameStatus}/4 correct`;
         document.querySelector(".gameStatus").appendChild(gameStatEl);
-        localStorage["lastPlayed"] = `${today}`;
+        setPlayed();
       } else {
         //when user still has coins to bet
         inputRow.style.color = "red";
@@ -45,6 +43,10 @@ export default function ChainRow(props) {
         }, 400);
       }
     }
+  }
+  function setPlayed() {
+    let currentTime = new Date();
+    localStorage.setItem("lastplayed", JSON.stringify(currentTime));
   }
 
   return (
