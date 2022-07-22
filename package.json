@@ -1,11 +1,14 @@
 {
   "name": "chain-reaction",
   "packageManager": "yarn@3.2.2",
+  "homepage": "https://rivka99.github.io/chain-reaction-game",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "browserslist": {
     "production": [
@@ -20,9 +23,14 @@
     ]
   },
   "dependencies": {
+    "@types/react-router-dom": "^5.3.3",
     "date-fns": "^2.28.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-router-dom": "^6.3.0",
     "web-vitals": "^2.1.4"
+  },
+  "devDependencies": {
+    "gh-pages": "^4.0.0"
   }
 }

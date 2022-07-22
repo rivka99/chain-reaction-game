@@ -2,7 +2,6 @@ import React from "react";
 
 export default function ChainRow(props) {
   function colorChange() {
-    console.log(props.word);
     const inputRow = document.querySelector("#rowInput" + props.word);
     //when part of the input is being typed and is right, turns blue
     if (
@@ -38,7 +37,9 @@ export default function ChainRow(props) {
       } else {
         //when user still has coins to bet
         inputRow.style.color = "red";
+        props.disableForm();
         setTimeout(function () {
+          inputRow.value = "";
           props.setBetRound(true);
         }, 400);
       }

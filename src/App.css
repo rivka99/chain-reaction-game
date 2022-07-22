@@ -12,6 +12,24 @@
   color:darkolivegreen;
 }
 
+.afterGame{
+  color: darkolivegreen;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  font-size: xx-large;
+  max-width: 550px;
+}
+
+.diffNum{
+  color: rebeccapurple;
+  font-size:80%;
+  padding: 2px;
+  border: 2px dashed saddlebrown ;
+  
+}
 .popup-div{
   padding: 5%;
   background-color: #f0f0f0;

@@ -3,8 +3,7 @@ import ChainRow from "./ChainRow";
 import ChainWord from "./ChainWord";
 import games from "./wordMapper";
 import { useState, useRef } from "react";
-//import DateTimePicker from "@react-native-community/datetimepicker";
-import { differenceInDays, parseISO } from "date-fns";
+import { differenceInHours, parseISO } from "date-fns";
 import BettingPopup from "./BettingPopup";
 
 export default function ChainReactionGame() {
@@ -17,15 +16,14 @@ export default function ChainReactionGame() {
   const [betValue, setBetValue] = useState(0);
   const [coins, setCoins] = useState(200);
   const [gameStatus, setGameStatus] = useState(0);
-  console.log(gameArray.current);
 
   function getTimeDiff() {
     let currentDay = new Date().toISOString();
     let prevPlay = JSON.parse(localStorage.getItem("lastplayed"));
-    console.log(prevPlay + " " + currentDay);
-    let diff = differenceInDays(parseISO(currentDay), parseISO(prevPlay));
+    console.log(prevPlay);
+    let diff = differenceInHours(parseISO(currentDay), parseISO(prevPlay));
     console.log(diff);
-    return;
+    return diff;
   }
 
   function disableForm() {
@@ -44,7 +42,7 @@ export default function ChainReactionGame() {
 
   return (
     <div>
-      {localStorage.getItem("lastplayed") === null || getTimeDiff() >= 1 ? (
+      {localStorage.getItem("lastplayed") === null || getTimeDiff() >= 24 ? (
         <div className="game-container">
           <h1 className="name">Term Connection Game</h1>
           <div className="gameStatus"></div>
@@ -79,8 +77,11 @@ export default function ChainReactionGame() {
           )}
         </div>
       ) : (
-        <div>
-          <p>Sorry you have to wait until tomorrow to play again!</p>
+        <div className="afterGame">
+          <h2>
+            That's it for today. New game in{" "}
+            <span className="diffNum">{24 - getTimeDiff()}</span> hours!
+          </h2>
         </div>
       )}
     </div>
