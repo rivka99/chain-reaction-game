@@ -6,6 +6,7 @@
   color: red;
   height:50px;
   font-size:xx-large;
+  max-width: 50%;
 }
 
 .name{
@@ -20,7 +21,7 @@
   transform: translate(-50%, -50%);
   text-align: center;
   font-size: xx-large;
-  max-width: 550px;
+  max-width: 50%;
 }
 
 .diffNum{
@@ -49,7 +50,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: fit-content;
+  max-width: 50%;
 }
 
 .radio-toolbar {
