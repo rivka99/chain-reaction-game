@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+Chain Reaction Game
+
+This game is based on the Chain Reaction gameshow - you have to try to guess the words related to the word you are given, and connect that word to the next work, until you complete the chain. 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
