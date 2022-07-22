@@ -30,6 +30,7 @@ export default function ChainRow(props) {
       if (props.coins < 10) {
         inputRow.style.color = "red";
         props.disableForm();
+        giveAnswers();
         const gameStatEl = document.createElement("h2");
         gameStatEl.textContent = `Game Over, you got ${props.gameStatus}/4 correct`;
         document.querySelector(".gameStatus").appendChild(gameStatEl);
@@ -48,6 +49,14 @@ export default function ChainRow(props) {
   function setPlayed() {
     let currentTime = new Date();
     localStorage.setItem("lastplayed", JSON.stringify(currentTime));
+  }
+
+  function giveAnswers() {
+    let formInputs = document.querySelectorAll(".rowInput");
+    for (let i = 0; i < formInputs.length; i++) {
+      formInputs[i].style.color = "purple";
+      formInputs[i].value = formInputs[i].id.slice(8, formInputs[i].id.length);
+    }
   }
 
   return (
