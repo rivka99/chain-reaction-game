@@ -74,7 +74,8 @@ export default function BettingPopup(props) {
             value="100"
           />
           <label for="100">100</label>
-          <input type="submit"></input>
+
+          <input type="submit" className="submit-btn" value="SUBMIT"></input>
         </form>
       </div>
     </div>
