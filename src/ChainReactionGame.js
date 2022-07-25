@@ -16,13 +16,12 @@ export default function ChainReactionGame() {
   const [betValue, setBetValue] = useState(0);
   const [coins, setCoins] = useState(200);
   const [gameStatus, setGameStatus] = useState(0);
+  const [correctLetters, setCorrectLetters] = useState("");
 
   function getTimeDiff() {
     let currentDay = new Date().toISOString();
     let prevPlay = JSON.parse(localStorage.getItem("lastplayed"));
-    console.log(prevPlay);
     let diff = differenceInHours(parseISO(currentDay), parseISO(prevPlay));
-    console.log(diff);
     return diff;
   }
 
@@ -58,6 +57,8 @@ export default function ChainReactionGame() {
                 setCoins={setCoins}
                 betValue={betValue}
                 coins={coins}
+                correctLetters={correctLetters}
+                setCorrectLetters={setCorrectLetters}
                 gameStatus={gameStatus}
                 setGameStatus={setGameStatus}
               />

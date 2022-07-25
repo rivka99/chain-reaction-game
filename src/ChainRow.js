@@ -1,6 +1,7 @@
 import React from "react";
-
+import { useState } from "react";
 export default function ChainRow(props) {
+  const [correctLetters, setCorrectLetters] = useState("");
   function colorChange() {
     const inputRow = document.querySelector("#rowInput" + props.word);
     //when part of the input is being typed and is right, turns blue
@@ -9,6 +10,9 @@ export default function ChainRow(props) {
       props.word.slice(0, inputRow.value.length)
     ) {
       inputRow.style.color = "green";
+      setCorrectLetters(
+        props.word.slice(0, inputRow.value.length).toLowerCase()
+      );
       //when full input is correct
       if (inputRow.value.toLowerCase() === props.word) {
         inputRow.disabled = true;
@@ -39,10 +43,18 @@ export default function ChainRow(props) {
         //when user still has coins to bet
         inputRow.style.color = "red";
         props.disableForm();
-        setTimeout(function () {
-          inputRow.value = "";
-          props.setBetRound(true);
-        }, 400);
+
+        (async () => {
+          await runAnswerHint(function () {
+            correctLetters !== ""
+              ? (inputRow.value = correctLetters)
+              : (inputRow.value = props.word[0]);
+            inputRow.style.color = "green";
+          });
+          await runAnswerHint(function () {
+            props.setBetRound(true);
+          });
+        })();
       }
     }
   }
@@ -58,6 +70,15 @@ export default function ChainRow(props) {
       formInputs[i].value = formInputs[i].id.slice(8, formInputs[i].id.length);
     }
   }
+
+  const runAnswerHint = (delayedFunction) => {
+    return new Promise((resolve) =>
+      setTimeout(() => {
+        delayedFunction();
+        resolve(true);
+      }, 400)
+    );
+  };
 
   return (
     <div>
