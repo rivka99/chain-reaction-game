@@ -20,13 +20,17 @@ export default function ChainRow(props) {
         //if the game is over notify player
         if (props.gameStatus === 3) {
           const gameStatEl1 = document.createElement("h2");
-          gameStatEl1.textContent = `Awesome, YOU WON!`;
+          gameStatEl1.textContent = `Awesome, YOU WON! ${props.gameStatus}/4 correct!`;
           document.querySelector(".gameStatus").appendChild(gameStatEl1);
-          setPlayed();
+          setTimeout(function () {
+            setPlayed();
+          }, 2000);
         } else {
           props.setGameStatus(props.gameStatus + 1);
           inputRow.classList.remove("openRow");
-          props.setBetRound(true);
+          setTimeout(function () {
+            props.setBetRound(true);
+          }, 500);
         }
       }
     } else {
@@ -34,7 +38,7 @@ export default function ChainRow(props) {
       if (props.coins < 10) {
         inputRow.style.color = "red";
         props.disableForm();
-        giveAnswers();
+        giveAnswers("purple");
         const gameStatEl = document.createElement("h2");
         gameStatEl.textContent = `Game Over, you got ${props.gameStatus}/4 correct`;
         document.querySelector(".gameStatus").appendChild(gameStatEl);
@@ -63,11 +67,12 @@ export default function ChainRow(props) {
     localStorage.setItem("lastplayed", JSON.stringify(currentTime));
   }
 
-  function giveAnswers() {
+  function giveAnswers(color) {
     let formInputs = document.querySelectorAll(".rowInput");
     for (let i = 0; i < formInputs.length; i++) {
-      formInputs[i].style.color = "purple";
-      formInputs[i].value = formInputs[i].id.slice(8, formInputs[i].id.length);
+      formInputs[i].style.color = color;
+      formInputs[i].value =
+        formInputs[i].id.slice(8, formInputs[i].id.length) + "";
     }
   }
 

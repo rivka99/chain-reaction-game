@@ -2,7 +2,9 @@ Chain Reaction Game
 
 This game is based on the Chain Reaction gameshow - you have to try to guess the words related to the word you are given, and connect that word to the next work, until you complete the chain. 
 
-To set up the tests run: npm install --save-dev react-test-renderer
+To set up the tests run: 
+npm install --save-dev react-test-renderer
+npm install --save-dev @testing-library/react
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

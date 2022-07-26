@@ -11,17 +11,17 @@ export default function ChainReactionGame() {
     games[Math.round(Math.random() * (games.length - 1))]
   );
 
-  let date = new Date();
   const [betRound, setBetRound] = useState(true);
   const [betValue, setBetValue] = useState(0);
   const [coins, setCoins] = useState(200);
   const [gameStatus, setGameStatus] = useState(0);
-  const [correctLetters, setCorrectLetters] = useState("");
 
   function getTimeDiff() {
     let currentDay = new Date().toISOString();
     let prevPlay = JSON.parse(localStorage.getItem("lastplayed"));
     let diff = differenceInHours(parseISO(currentDay), parseISO(prevPlay));
+    console.log(currentDay + " and " + prevPlay);
+
     return diff;
   }
 
@@ -43,8 +43,10 @@ export default function ChainReactionGame() {
     <div>
       {localStorage.getItem("lastplayed") === null || getTimeDiff() >= 24 ? (
         <div className="game-container">
-          <h1 className="name">Term Connection Game</h1>
-          <div className="gameStatus"></div>
+          <h1 className="name" data-testid="title-header">
+            Term Connection Game
+          </h1>
+          <div className="gameStatus" data-testid="game-status-div"></div>
           <div>
             <ChainWord word={gameArray.current[0]} />
             {gameArray.current.slice(1, 5).map((elWord) => (
@@ -57,8 +59,6 @@ export default function ChainReactionGame() {
                 setCoins={setCoins}
                 betValue={betValue}
                 coins={coins}
-                correctLetters={correctLetters}
-                setCorrectLetters={setCorrectLetters}
                 gameStatus={gameStatus}
                 setGameStatus={setGameStatus}
               />
@@ -78,7 +78,7 @@ export default function ChainReactionGame() {
           )}
         </div>
       ) : (
-        <div className="afterGame">
+        <div className="afterGame" data-testid="after-game">
           <h2>
             That's it for today. New game in{" "}
             <span className="diffNum">{24 - getTimeDiff()}</span> hours!
