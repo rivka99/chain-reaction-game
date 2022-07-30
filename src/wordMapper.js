@@ -1,7 +1,7 @@
 //each game requires exactly 6 words.
 const games = [
   ["water", "bottle", "up", "turn", "over", "work"],
-  ["bottle", "neck", "tie", "down", "side", "street"],
+  ["bottle", "neck", "tie", "gardn", "side", "street"],
   ["live", "stream", "line", "back", "bone", "marrow"],
   ["home", "school", "bus", "stop", "light", "switch"],
   ["my", "self", "center", "piece", "together", "forever"],

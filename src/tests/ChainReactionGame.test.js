@@ -2,17 +2,42 @@ import { cleanup, fireEvent, render, screen } from "@testing-library/react";
 import ChainReactionGame from "../ChainReactionGame";
 import { differenceInHours, parseISO } from "date-fns";
 
-afterEach(cleanup);
-describe("Chain Reaction Game Component", () => {
-  it("Renders game part of the component when lastPlayed is null", () => {
-    render(<ChainReactionGame />);
-    localStorage.setItem("lastPlayed", null);
-    expect(screen.getByTestId("title-header")).toBeInTheDocument();
-    expect(screen.getByTestId("game-status-div")).toBeInTheDocument();
-    expect(screen.queryByText("That's it for today")).not.toBeInTheDocument();
-    // fireEvent.click(getByLabelText(/off/i));
+// let mockStorage = {};
 
-    // expect(queryByLabelText(/on/i)).toBeTruthy();
+// beforeAll(() => {
+//   global.Storage.prototype.setItem = jest.fn((key, value) => {
+//     mockStorage[key] = value;
+//   });
+//   global.Storage.prototype.getItem = jest.fn((key) => mockStorage[key] ?? null);
+// });
+
+// beforeEach(() => {
+//   mockStorage = {};
+// });
+
+// afterAll(() => {
+//   global.Storage.prototype.setItem.mockReset();
+//   global.Storage.prototype.getItem.mockReset();
+// });
+
+afterEach(cleanup);
+
+describe("Chain Reaction Game Component", () => {
+  // jest.spyOn(Object.getPrototypeOf(window.localStorage), "setItem");
+  // Object.setPrototypeOf(window.localStorage.setItem, jest.fn());
+  // jest.spyOn(Object.getPrototypeOf(window.localStorage), "getItem");
+  // Object.setPrototypeOf(window.localStorage.getItem, jest.fn());
+  it("Renders game", () => {
+    render(<ChainReactionGame />);
+
+    //localStorage.setItem("lastplayed", null);
+
+    expect(screen.getByTestId("full-game-div")).toBeInTheDocument;
+    //   expect(screen.getByTestId("game-status-div")).toBeInTheDocument;
+    //   expect(screen.queryByText("That's it for today")).not.toBeInTheDocument;
+    //   expect(global.Storage.prototype.setItem).toHaveBeenCalledOnce;
+    //   expect(localStorage.getItem("lastplayed")).toEqual(null);
+    // });
   });
   // it("Renders -new game in _ hours- if lastPlayed is under 24 hours ago", () => {
   //   render(<ChainReactionGame />);
@@ -21,5 +46,4 @@ describe("Chain Reaction Game Component", () => {
   //   console.log(date);
   //   localStorage.setItem("lastPlayed", date);
   //   expect(screen.queryByTestId("title-header")).not.toBeInTheDocument();
-  // });
 });
