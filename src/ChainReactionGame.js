@@ -1,12 +1,23 @@
 import React from "react";
+import { useEffect } from "react";
 import ChainRow from "./ChainRow";
 import ChainWord from "./ChainWord";
 import games from "./wordMapper";
 import { useState, useRef } from "react";
 import { differenceInHours, parseISO } from "date-fns";
 import BettingPopup from "./BettingPopup";
+import useData from "./useData";
 
 export default function ChainReactionGame() {
+  const { data, getData } = useData();
+  useEffect(() => {
+    async function onPageLoad() {
+      await getData();
+    }
+    onPageLoad();
+  }, []);
+  console.log(data);
+
   const gameArray = useRef(
     games[Math.round(Math.random() * (games.length - 1))]
   );
@@ -40,7 +51,7 @@ export default function ChainReactionGame() {
   }
 
   return (
-    <div>
+    <div data-testid="full-game-div">
       {localStorage.getItem("lastplayed") === null || getTimeDiff() >= 24 ? (
         <div className="game-container">
           <h1 className="name" data-testid="title-header">
