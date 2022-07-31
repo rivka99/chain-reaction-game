@@ -2,21 +2,51 @@ import React from "react";
 import { useEffect } from "react";
 import ChainRow from "./ChainRow";
 import ChainWord from "./ChainWord";
+import Airtable from "airtable";
 import games from "./wordMapper";
 import { useState, useRef } from "react";
 import { differenceInHours, parseISO } from "date-fns";
 import BettingPopup from "./BettingPopup";
-import useData from "./useData";
 
 export default function ChainReactionGame() {
-  const { data, getData } = useData();
-  useEffect(() => {
-    async function onPageLoad() {
-      await getData();
-    }
-    onPageLoad();
-  }, []);
-  console.log(data);
+  const { data, setData } = useState(null);
+
+  let isoDate = new Date("08/01/2022").toISOString().slice(0, 10);
+  console.log(isoDate);
+  const apiKey = `${process.env.REACT_APP_API_KEY}`;
+  const baseID = `${process.env.REACT_APP_BASE_ID}`;
+  //create a new Airtable object in React
+  const base = new Airtable({ apiKey: apiKey }).base(baseID);
+
+  base("tabledata")
+    .select({
+      filterByFormula: `"DATESTR({Name})='${isoDate}'"`,
+      view: "Grid view",
+    })
+    .eachPage(
+      function page(records, fetchNextPage) {
+        records.forEach(function (record) {
+          console.log(`"DATESTR({Name})='${isoDate}'"` + record.get("Name"));
+          let newEl = {
+            date: record.get("Name"),
+            game: record.get("games"),
+          };
+          console.log(newEl);
+          setData(newEl);
+        });
+        try {
+          fetchNextPage();
+        } catch {
+          return;
+        }
+      },
+      function done(err) {
+        if (err) {
+          console.error(err);
+          return;
+        }
+      }
+    );
 
   const gameArray = useRef(
     games[Math.round(Math.random() * (games.length - 1))]
