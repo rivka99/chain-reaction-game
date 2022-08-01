@@ -9,53 +9,51 @@ import { differenceInHours, parseISO } from "date-fns";
 import BettingPopup from "./BettingPopup";
 
 export default function ChainReactionGame() {
-  const { data, setData } = useState(null);
-
-  let isoDate = new Date("08/01/2022").toISOString().slice(0, 10);
-  console.log(isoDate);
-  const apiKey = `${process.env.REACT_APP_API_KEY}`;
-  const baseID = `${process.env.REACT_APP_BASE_ID}`;
-  //create a new Airtable object in React
-  const base = new Airtable({ apiKey: apiKey }).base(baseID);
-
-  base("tabledata")
-    .select({
-      filterByFormula: `"DATESTR({Name})='${isoDate}'"`,
-      view: "Grid view",
-    })
-    .eachPage(
-      function page(records, fetchNextPage) {
-        records.forEach(function (record) {
-          console.log(`"DATESTR({Name})='${isoDate}'"` + record.get("Name"));
-          let newEl = {
-            date: record.get("Name"),
-            game: record.get("games"),
-          };
-          console.log(newEl);
-          setData(newEl);
-        });
-        try {
-          fetchNextPage();
-        } catch {
-          return;
-        }
-      },
-      function done(err) {
-        if (err) {
-          console.error(err);
-          return;
-        }
-      }
-    );
-
-  const gameArray = useRef(
-    games[Math.round(Math.random() * (games.length - 1))]
-  );
+  let data = null;
+  let gameArray;
 
   const [betRound, setBetRound] = useState(true);
   const [betValue, setBetValue] = useState(0);
   const [coins, setCoins] = useState(200);
   const [gameStatus, setGameStatus] = useState(0);
+  let isoDate = new Date().toLocaleDateString();
+  console.log(isoDate);
+  let filterDate = `"{Name} ='` + isoDate + `'"`;
+  const apiKey = `${process.env.REACT_APP_API_KEY}`;
+  const baseID = `${process.env.REACT_APP_BASE_ID}`;
+  //create a new Airtable object in React
+  const base = new Airtable({ apiKey: apiKey }).base(baseID);
+
+  useEffect(() => {
+    getGame();
+  }, []);
+  const getGame = () => {
+    base("tabledata")
+      .select({
+        filterByFormula: `{Name} = "${isoDate}"`,
+        view: "Grid view",
+      })
+      .eachPage(
+        function page(records, fetchNextPage) {
+          records.forEach(function (record) {
+            console.log(`"({Name})='${isoDate}'"` + record.get("Name"));
+            let newEl = {
+              date: record.get("Name"),
+              game: record.get("games"),
+            };
+            console.log(newEl);
+            data = newEl;
+          });
+          gameArray = useRef(data.game);
+        },
+        function done(err) {
+          if (err) {
+            console.error(err);
+            return;
+          }
+        }
+      );
+  };
 
   function getTimeDiff() {
     let currentDay = new Date().toISOString();
@@ -79,7 +77,9 @@ export default function ChainReactionGame() {
       formInputs[i].disabled = false;
     }
   }
-
+  if (!data) {
+    return <div className="App">Loading...</div>;
+  }
   return (
     <div data-testid="full-game-div">
       {localStorage.getItem("lastplayed") === null || getTimeDiff() >= 24 ? (
