@@ -7,25 +7,26 @@ import games from "./wordMapper";
 import { useState, useRef } from "react";
 import { differenceInHours, parseISO } from "date-fns";
 import BettingPopup from "./BettingPopup";
+import AfterGame from "./AfterGame";
 
 export default function ChainReactionGame() {
-  let data = null;
-  let gameArray;
-
+  const [gameArray, setGameArray] = useState([]);
   const [betRound, setBetRound] = useState(true);
   const [betValue, setBetValue] = useState(0);
   const [coins, setCoins] = useState(200);
   const [gameStatus, setGameStatus] = useState(0);
+
+  const [data, setData] = useState(null);
   let isoDate = new Date().toLocaleDateString();
-  console.log(isoDate);
-  let filterDate = `"{Name} ='` + isoDate + `'"`;
   const apiKey = `${process.env.REACT_APP_API_KEY}`;
   const baseID = `${process.env.REACT_APP_BASE_ID}`;
-  //create a new Airtable object in React
   const base = new Airtable({ apiKey: apiKey }).base(baseID);
 
   useEffect(() => {
-    getGame();
+    async function fetchData() {
+      await getGame();
+    }
+    fetchData();
   }, []);
   const getGame = () => {
     base("tabledata")
@@ -36,15 +37,13 @@ export default function ChainReactionGame() {
       .eachPage(
         function page(records, fetchNextPage) {
           records.forEach(function (record) {
-            console.log(`"({Name})='${isoDate}'"` + record.get("Name"));
             let newEl = {
               date: record.get("Name"),
               game: record.get("games"),
             };
-            console.log(newEl);
-            data = newEl;
+            setData(newEl);
+            setGameArray(newEl.game);
           });
-          gameArray = useRef(data.game);
         },
         function done(err) {
           if (err) {
@@ -59,7 +58,6 @@ export default function ChainReactionGame() {
     let currentDay = new Date().toISOString();
     let prevPlay = JSON.parse(localStorage.getItem("lastplayed"));
     let diff = differenceInHours(parseISO(currentDay), parseISO(prevPlay));
-    console.log(currentDay + " and " + prevPlay);
 
     return diff;
   }
@@ -89,8 +87,8 @@ export default function ChainReactionGame() {
           </h1>
           <div className="gameStatus" data-testid="game-status-div"></div>
           <div>
-            <ChainWord word={gameArray.current[0]} />
-            {gameArray.current.slice(1, 5).map((elWord) => (
+            <ChainWord word={gameArray[0]} />
+            {gameArray.slice(1, 5).map((elWord) => (
               <ChainRow
                 key={elWord}
                 word={elWord}
@@ -104,7 +102,7 @@ export default function ChainReactionGame() {
                 setGameStatus={setGameStatus}
               />
             ))}
-            <ChainWord word={gameArray.current[5]} />
+            <ChainWord word={gameArray[5]} />
           </div>
           {betRound && coins > 0 && (
             <BettingPopup
@@ -120,10 +118,7 @@ export default function ChainReactionGame() {
         </div>
       ) : (
         <div className="afterGame" data-testid="after-game">
-          <h2>
-            That's it for today. New game in{" "}
-            <span className="diffNum">{24 - getTimeDiff()}</span> hours!
-          </h2>
+          <AfterGame getTimeDiff={getTimeDiff} />
         </div>
       )}
     </div>
