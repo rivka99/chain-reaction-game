@@ -12,7 +12,7 @@ export default function ChainRow(props) {
     const inputRow = document.querySelector("#rowInput" + props.word);
     //if they've never played yet, don't show bet popup until they click a row
 
-    //when part of the input is being typed and is right, turns blue
+    //when part of the input is being typed and is right, turns blue.
     if (
       inputRow.value.toLowerCase() ===
       props.word.slice(0, inputRow.value.length)
