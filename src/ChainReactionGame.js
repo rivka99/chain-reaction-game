@@ -11,13 +11,14 @@ import Loader from "./Loader";
 import HelpPopup from "./HelpPopup";
 
 export default function ChainReactionGame() {
-  const [betRound, setBetRound] = useState(true);
+  const [betRound, setBetRound] = useState(false);
   const [betValue, setBetValue] = useState(0);
   const [coins, setCoins] = useState(200);
   const [data, setData] = useState(null);
   const [gameArray, setGameArray] = useState([]);
   const [gameStatus, setGameStatus] = useState(0);
   const [help, setHelp] = useState(false);
+  const [guessClicked, setGuessClicked] = useState(0);
 
   let isoDate = new Date().toLocaleDateString();
   const apiKey =
@@ -118,6 +119,8 @@ export default function ChainReactionGame() {
                 coins={coins}
                 gameStatus={gameStatus}
                 setGameStatus={setGameStatus}
+                guessClicked={guessClicked}
+                setGuessClicked={setGuessClicked}
               />
             ))}
             <ChainWord word={gameArray[5]} />
