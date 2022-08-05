@@ -1,15 +1,16 @@
 {
   "files": {
-    "main.css": "/chain-reaction-game/static/css/main.f6a72395.css",
-    "main.js": "/chain-reaction-game/static/js/main.714b8252.js",
+    "main.css": "/chain-reaction-game/static/css/main.a39adb53.css",
+    "main.js": "/chain-reaction-game/static/js/main.4627f171.js",
     "static/js/787.537994ce.chunk.js": "/chain-reaction-game/static/js/787.537994ce.chunk.js",
+    "static/media/loadinggif.gif": "/chain-reaction-game/static/media/loadinggif.e2ec1433710e42af7303.gif",
     "index.html": "/chain-reaction-game/index.html",
-    "main.f6a72395.css.map": "/chain-reaction-game/static/css/main.f6a72395.css.map",
-    "main.714b8252.js.map": "/chain-reaction-game/static/js/main.714b8252.js.map",
+    "main.a39adb53.css.map": "/chain-reaction-game/static/css/main.a39adb53.css.map",
+    "main.4627f171.js.map": "/chain-reaction-game/static/js/main.4627f171.js.map",
     "787.537994ce.chunk.js.map": "/chain-reaction-game/static/js/787.537994ce.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f6a72395.css",
-    "static/js/main.714b8252.js"
+    "static/css/main.a39adb53.css",
+    "static/js/main.4627f171.js"
   ]
 }
