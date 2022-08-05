@@ -8,6 +8,7 @@ import { useState, useRef } from "react";
 import { differenceInHours, parseISO } from "date-fns";
 import BettingPopup from "./BettingPopup";
 import AfterGame from "./AfterGame";
+import Loader from "./Loader";
 
 export default function ChainReactionGame() {
   const [gameArray, setGameArray] = useState([]);
@@ -78,7 +79,11 @@ export default function ChainReactionGame() {
     }
   }
   if (!data) {
-    return <div className="App">Loading...</div>;
+    return (
+      <div className="loader-container">
+        <Loader />
+      </div>
+    );
   }
   return (
     <div data-testid="full-game-div">

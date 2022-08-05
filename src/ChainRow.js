@@ -20,7 +20,7 @@ export default function ChainRow(props) {
         //if the game is over notify player
         if (props.gameStatus === 3) {
           const gameStatEl1 = document.createElement("h2");
-          gameStatEl1.textContent = `Awesome, YOU WON! ${props.gameStatus}/4 correct!`;
+          gameStatEl1.textContent = `Awesome, YOU WON! 4/4 correct!`;
           document.querySelector(".gameStatus").appendChild(gameStatEl1);
           setTimeout(function () {
             setPlayed();
