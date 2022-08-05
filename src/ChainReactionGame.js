@@ -18,8 +18,10 @@ export default function ChainReactionGame() {
 
   const [data, setData] = useState(null);
   let isoDate = new Date().toLocaleDateString();
-  const apiKey = `${process.env.REACT_APP_API_KEY}`;
-  const baseID = `${process.env.REACT_APP_BASE_ID}`;
+  const apiKey =
+    `${process.env.REACT_APP_API_KEY}` || `${config.REACT_APP_API_KEY}`;
+  const baseID =
+    `${process.env.REACT_APP_BASE_ID}` || `${config.REACT_APP_BASE_ID}`;
   const base = new Airtable({ apiKey: apiKey }).base(baseID);
 
   useEffect(() => {
