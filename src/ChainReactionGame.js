@@ -89,7 +89,7 @@ export default function ChainReactionGame() {
       {localStorage.getItem("lastplayed") === null || getTimeDiff() >= 24 ? (
         <div className="game-container">
           <h1 className="name" data-testid="title-header">
-            Term Connection Game
+            LinkSixth
           </h1>
           <div className="gameStatus" data-testid="game-status-div"></div>
           <div>

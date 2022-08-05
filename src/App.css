@@ -22,7 +22,9 @@
 }
 
 .name{
-  color:darkolivegreen;
+  color:rgb(66, 83, 37);
+  margin-bottom: 40px;
+  font-size: 250%;
 }
 
 .afterGame{
