@@ -1,7 +1,7 @@
 {
   "name": "chain-reaction",
   "packageManager": "yarn@3.2.2",
-  "homepage": "https://rivka99.github.io/chain-reaction-game",
+  "homepage": "https://link6th.app/",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
