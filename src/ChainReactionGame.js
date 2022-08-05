@@ -8,15 +8,17 @@ import { differenceInHours, parseISO } from "date-fns";
 import BettingPopup from "./BettingPopup";
 import AfterGame from "./AfterGame";
 import Loader from "./Loader";
+import HelpPopup from "./HelpPopup";
 
 export default function ChainReactionGame() {
-  const [gameArray, setGameArray] = useState([]);
   const [betRound, setBetRound] = useState(true);
   const [betValue, setBetValue] = useState(0);
   const [coins, setCoins] = useState(200);
-  const [gameStatus, setGameStatus] = useState(0);
-
   const [data, setData] = useState(null);
+  const [gameArray, setGameArray] = useState([]);
+  const [gameStatus, setGameStatus] = useState(0);
+  const [help, setHelp] = useState(false);
+
   let isoDate = new Date().toLocaleDateString();
   const apiKey =
     `${process.env.REACT_APP_API_KEY}` || `${config.REACT_APP_API_KEY}`;
@@ -37,7 +39,7 @@ export default function ChainReactionGame() {
         view: "Grid view",
       })
       .eachPage(
-        function page(records, fetchNextPage) {
+        function page(records) {
           records.forEach(function (record) {
             let newEl = {
               date: record.get("Name"),
@@ -88,9 +90,19 @@ export default function ChainReactionGame() {
     <div data-testid="full-game-div">
       {localStorage.getItem("lastplayed") === null || getTimeDiff() >= 24 ? (
         <div className="game-container">
-          <h1 className="name" data-testid="title-header">
-            LinkSixth
-          </h1>
+          <div className="header-row">
+            <h1 className="name" data-testid="title-header">
+              LinkSixth
+            </h1>
+            <img
+              src={require("./questionicon.png")}
+              alt="instructions"
+              onClick={() => {
+                setHelp(true);
+              }}
+              id="help-icon"
+            />
+          </div>
           <div className="gameStatus" data-testid="game-status-div"></div>
           <div>
             <ChainWord word={gameArray[0]} />
@@ -121,6 +133,7 @@ export default function ChainReactionGame() {
               setBetValue={setBetValue}
             />
           )}
+          {help && <HelpPopup help={help} setHelp={setHelp} />}
         </div>
       ) : (
         <div className="afterGame" data-testid="after-game">

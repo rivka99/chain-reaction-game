@@ -21,10 +21,33 @@
   max-width: 90%;
 }
 
+.header-row{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 .name{
   color:rgb(66, 83, 37);
   margin-bottom: 40px;
   font-size: 250%;
+}
+
+#help-icon{
+  width: 11%;
+  height: 11%;
+  margin-left: 40%;
+}
+
+#exit-icon{
+  width: 8%;
+  height: 7%;
+  float: right;
+}
+
+#guessboard2, #guessboard3{
+  width: 25%;
+  height: 25%;
 }
 
 .afterGame{
@@ -47,6 +70,8 @@
 }
 .popup-div{
   text-align: center;
+  display: flex;
+  flex-direction: column;
   padding: 5%;
   background-color: #f0f0f0;
   border: solid gray .5px;
@@ -58,6 +83,30 @@
   transform: translate(-50%, -50%);
   height: 85%;
   width: 120%;
+}
+
+.help-popup{
+  text-align: center;
+  padding: 5%;
+  background-color: #f0f0f0;
+  border: solid gray .5px;
+  border-radius: 10px;
+  z-index: 10;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  height: 100%;
+  width: 120%;
+}
+
+.help-bet-images{
+  display: flex;
+  flex-direction: row;
+  max-height: 30%;
+  gap: 45px;
+  justify-content: center;
+  
 }
 
 .game-container{
