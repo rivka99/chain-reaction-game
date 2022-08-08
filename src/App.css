@@ -82,7 +82,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   height: 85%;
-  width: 120%;
+  width: 100%;
 }
 
 .help-popup{
@@ -97,7 +97,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   height: 100%;
-  width: 120%;
+  width: 100%;
 }
 
 .help-bet-images{
@@ -114,7 +114,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  max-width: 50%;
+  max-width: 90%;
 }
 
 .radio-toolbar {
