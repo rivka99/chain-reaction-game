@@ -97,6 +97,7 @@ export default function ChainRow(props) {
   return (
     <div>
       <input
+        role="chain-row"
         type="text"
         className="rowInput openRow notGuessed"
         id={`rowInput${props.word}`}

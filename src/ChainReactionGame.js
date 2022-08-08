@@ -82,7 +82,7 @@ export default function ChainReactionGame() {
   }
   if (!data) {
     return (
-      <div className="loader-container">
+      <div className="loader-container" data-testid="loader-container">
         <Loader />
       </div>
     );
