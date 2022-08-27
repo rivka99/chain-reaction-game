@@ -162,7 +162,15 @@ export default function ChainReactionGame() {
         </div>
       ) : (
         <div className="afterGame" data-testid="after-game">
-          <AfterGame getTimeDiff={getTimeDiff} />
+          <AfterGame
+            getTimeDiff={getTimeDiff}
+            help={help}
+            setHelp={setHelp}
+            stats={stats}
+            setStats={setStats}
+            gameStats={gameStats}
+            gameStatus={gameStatus}
+          />
         </div>
       )}
     </div>
