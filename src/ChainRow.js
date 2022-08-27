@@ -73,7 +73,19 @@ export default function ChainRow(props) {
   }
   function setPlayed() {
     let currentTime = new Date();
+    let formInputs = document.querySelectorAll(".notGuessed");
+    let notGuessed = [];
+    for (let i = 0; i < formInputs.length; i++) {
+      notGuessed.push(formInputs[i].value);
+    }
     localStorage.setItem("lastplayed", JSON.stringify(currentTime));
+    props.gameStats.push({
+      gameStatus: props.gameStatus,
+      game: props.gameArray,
+      xguessed: notGuessed,
+    });
+    console.log(props.gameStats);
+    localStorage.setItem("gamestats", JSON.stringify(props.gameStats));
   }
 
   function giveAnswers(color) {

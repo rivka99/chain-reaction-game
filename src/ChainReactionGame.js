@@ -9,6 +9,7 @@ import BettingPopup from "./BettingPopup";
 import AfterGame from "./AfterGame";
 import Loader from "./Loader";
 import HelpPopup from "./HelpPopup";
+import StatsPopup from "./StatsPopup";
 
 export default function ChainReactionGame() {
   const [betRound, setBetRound] = useState(false);
@@ -18,6 +19,7 @@ export default function ChainReactionGame() {
   const [gameArray, setGameArray] = useState([]);
   const [gameStatus, setGameStatus] = useState(0);
   const [help, setHelp] = useState(false);
+  const [stats, setStats] = useState(false);
   const [guessClicked, setGuessClicked] = useState(0);
 
   let isoDate = new Date().toLocaleDateString();
@@ -26,6 +28,9 @@ export default function ChainReactionGame() {
   const baseID =
     `${process.env.REACT_APP_BASE_ID}` || `${config.REACT_APP_BASE_ID}`;
   const base = new Airtable({ apiKey: apiKey }).base(baseID);
+  let gameStats = localStorage.getItem("gamestats")
+    ? JSON.parse(localStorage.getItem("gamestats"))
+    : [];
 
   useEffect(() => {
     async function fetchData() {
@@ -103,6 +108,14 @@ export default function ChainReactionGame() {
               }}
               id="help-icon"
             />
+            <img
+              src={require("./statsicon.png")}
+              alt="help"
+              onClick={() => {
+                setStats(true);
+              }}
+              id="stats-icon"
+            />
           </div>
           <div className="gameStatus" data-testid="game-status-div"></div>
           <div>
@@ -121,6 +134,8 @@ export default function ChainReactionGame() {
                 setGameStatus={setGameStatus}
                 guessClicked={guessClicked}
                 setGuessClicked={setGuessClicked}
+                gameStats={gameStats}
+                gameArray={gameArray}
               />
             ))}
             <ChainWord word={gameArray[5]} />
@@ -137,6 +152,13 @@ export default function ChainReactionGame() {
             />
           )}
           {help && <HelpPopup help={help} setHelp={setHelp} />}
+          {stats && (
+            <StatsPopup
+              stats={stats}
+              setStats={setStats}
+              gameStats={gameStats}
+            />
+          )}
         </div>
       ) : (
         <div className="afterGame" data-testid="after-game">
