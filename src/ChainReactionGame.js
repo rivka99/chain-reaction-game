@@ -12,9 +12,18 @@ import HelpPopup from "./HelpPopup";
 import StatsPopup from "./StatsPopup";
 
 export default function ChainReactionGame() {
+  let gameStats = localStorage.getItem("gamestats")
+    ? JSON.parse(localStorage.getItem("gamestats"))
+    : [];
   const [betRound, setBetRound] = useState(false);
   const [betValue, setBetValue] = useState(0);
-  const [coins, setCoins] = useState(200);
+  const [coins, setCoins] = useState(
+    !gameStats.length
+      ? 200
+      : gameStats[gameStats.length - 1].totalCoins >= 200
+      ? gameStats[gameStats.length - 1].totalCoins
+      : 200
+  );
   const [data, setData] = useState(null);
   const [gameArray, setGameArray] = useState([]);
   const [gameStatus, setGameStatus] = useState(0);
@@ -28,9 +37,6 @@ export default function ChainReactionGame() {
   const baseID =
     `${process.env.REACT_APP_BASE_ID}` || `${config.REACT_APP_BASE_ID}`;
   const base = new Airtable({ apiKey: apiKey }).base(baseID);
-  let gameStats = localStorage.getItem("gamestats")
-    ? JSON.parse(localStorage.getItem("gamestats"))
-    : [];
 
   useEffect(() => {
     async function fetchData() {
@@ -149,6 +155,7 @@ export default function ChainReactionGame() {
               enableForm={enableForm}
               betValue={betValue}
               setBetValue={setBetValue}
+              gameStatus={gameStatus}
             />
           )}
           {help && <HelpPopup help={help} setHelp={setHelp} />}

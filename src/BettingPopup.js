@@ -6,7 +6,7 @@ export default function BettingPopup(props) {
     let betCommand = document.querySelector(".betCommand");
     props.setBetValue(bet);
 
-    if (props.coins >= parseInt(bet)) {
+    if (props.coins >= parseInt(bet) && props.gameStatus < 4) {
       betCommand.textContent = "Make a bet";
       betCommand.style.color = "black";
       props.setCoins(props.coins - bet);

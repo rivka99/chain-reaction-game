@@ -24,10 +24,17 @@ export default function ChainRow(props) {
       //when full input is correct
       if (inputRow.value.toLowerCase() === props.word) {
         inputRow.disabled = true;
-        props.setCoins(props.coins + props.betValue * 2);
+        console.log(props.betValue);
+        props.setCoins(props.betValue * 2 + props.coins);
+        console.log(props.coins);
         //if the game is over notify player
         if (props.gameStatus === 3) {
+          console.log(props.coins);
+          props.setCoins(props.coins + props.betValue * 2);
           const gameStatEl1 = document.createElement("h2");
+          props.setGameStatus(props.gameStatus + 1);
+          inputRow.classList.remove("openRow");
+          inputRow.classList.remove("notGuessed");
           gameStatEl1.textContent = `Awesome, YOU WON! 4/4 correct!`;
           document.querySelector(".gameStatus").appendChild(gameStatEl1);
           setTimeout(function () {
@@ -79,12 +86,31 @@ export default function ChainRow(props) {
       notGuessed.push(formInputs[i].value);
     }
     localStorage.setItem("lastplayed", JSON.stringify(currentTime));
+    console.log(props.coins);
+    let coinDiff = props.gameStats.length
+      ? props.coins - props.gameStats[props.gameStats.length - 1].totalCoins
+      : props.coins - 200;
+    console.log(props.coins);
+    // let highestCoins = props.gameStats[props.gameStats.length - 1].highestTotalCoins
+    let totalHighestCoins = props.gameStats.length
+      ? props.coins >
+        props.gameStats[props.gameStats.length - 1].highestTotalCoins
+        ? props.coins
+        : props.gameStats[props.gameStats.length - 1].highestTotalCoins
+      : props.coins;
+    let addedCoins = props.gameStats.length
+      ? coinDiff > props.gameStats[props.gameStats.length - 1].highestCoins
+        ? coinDiff
+        : props.gameStats[props.gameStats.length - 1].highestCoins
+      : coinDiff;
     props.gameStats.push({
       gameStatus: props.gameStatus,
       game: props.gameArray,
       xguessed: notGuessed,
+      totalCoins: props.coins,
+      highestCoins: addedCoins,
+      highestTotalCoins: totalHighestCoins,
     });
-    console.log(props.gameStats);
     localStorage.setItem("gamestats", JSON.stringify(props.gameStats));
   }
 
