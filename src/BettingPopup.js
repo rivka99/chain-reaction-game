@@ -9,7 +9,6 @@ export default function BettingPopup(props) {
     if (props.coins >= parseInt(bet) && props.gameStatus < 4) {
       betCommand.textContent = "Make a bet";
       betCommand.style.color = "black";
-      props.setCoins(props.coins - bet);
       props.setBetRound(false);
       props.enableForm();
     } else {

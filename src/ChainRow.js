@@ -25,12 +25,11 @@ export default function ChainRow(props) {
       if (inputRow.value.toLowerCase() === props.word) {
         inputRow.disabled = true;
         console.log(props.betValue);
-        props.setCoins(props.betValue * 2 + props.coins);
+        props.setCoins(props.betValue * 1 + props.coins * 1);
         console.log(props.coins);
         //if the game is over notify player
         if (props.gameStatus === 3) {
           console.log(props.coins);
-          props.setCoins(props.coins + props.betValue * 2);
           const gameStatEl1 = document.createElement("h2");
           props.setGameStatus(props.gameStatus + 1);
           inputRow.classList.remove("openRow");
@@ -51,6 +50,7 @@ export default function ChainRow(props) {
       }
     } else {
       //when user guessed wrong can't bet anymore
+      props.setCoins(props.coins - props.betValue);
       if (props.coins < 10) {
         inputRow.style.color = "red";
         props.disableForm();

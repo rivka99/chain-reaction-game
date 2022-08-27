@@ -1,13 +1,6 @@
 import React from "react";
 
 export default function StatsPopup(props) {
-  /*things to add here:
-  one: at the start of the game, make a const to track starting coins, 
-  at the end calculate how many coins were added during the round and add it to
-  the gameStatus local storage var as 'coinsgained' at the end of the game
-  
-  Also, have stats/help show between games. 
-  */
   let gamesLength = props.gameStats.length;
 
   let wordCols = [];
@@ -65,6 +58,12 @@ export default function StatsPopup(props) {
       />
       <h3>Your stats</h3>
       <div id="found-stat">
+        You have{" "}
+        <span id="gameWordAvg">
+          {props.gameStats[props.gameStats.length - 1].totalCoins}
+        </span>{" "}
+        coins.
+        <br></br> <br></br>
         On average you found{" "}
         <span id="gameWordAvg">
           {(
@@ -76,12 +75,7 @@ export default function StatsPopup(props) {
           /4
         </span>{" "}
         correct words over {props.gameStats.length} games.<br></br>
-        You have{" "}
-        <span id="gameWordAvg">
-          {props.gameStats[props.gameStats.length - 1].totalCoins}
-        </span>{" "}
-        coins.
-        <br></br> <br></br>
+        <br></br>
         The highest number of coins you have gained in a single game was{" "}
         <span id="gameWordAvg">
           {props.gameStats[props.gameStats.length - 1].highestCoins}
@@ -96,11 +90,23 @@ export default function StatsPopup(props) {
       </div>
       <div>
         <h4>Your Last Game:</h4>
-        <h5 style={{ margin: 0, border: "solid black 1px" }}>
+        <h5
+          style={{
+            margin: 0,
+            border: "solid black 1px",
+            backgroundColor: "#dce6df",
+          }}
+        >
           {props.gameStats[props.gameStats.length - 1].game[0]}
         </h5>
         {wordCols}
-        <h5 style={{ margin: 0, border: "solid black 1px" }}>
+        <h5
+          style={{
+            margin: 0,
+            border: "solid black 1px",
+            backgroundColor: "#dce6df",
+          }}
+        >
           {props.gameStats[props.gameStats.length - 1].game[5]}
         </h5>
       </div>
