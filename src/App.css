@@ -140,12 +140,12 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 85vh;
+  height: 65vh;
   width: 100%;
 }
 
 .stats-popup h4, h3{
-  margin-top: 2%;
+  margin-top: 3.5%;
   margin-bottom: 2%;
 }
 #found-stat{
@@ -199,4 +199,18 @@ input[type=submit]{
   font-weight: bold;
   border-radius: 8px;
   width: 60%;
+}
+
+@media only screen and (max-width: 460px) {
+  .popup-div, .stats-popup, .help-popup {
+    margin-left: 1.8vh;
+  }
+  #help-icon-after, #help-icon, #stats-icon{
+    height: 29%;
+    width: 29%;
+  }
+  #help-icon{
+    margin-left: 20%;
+  }
+  
 }

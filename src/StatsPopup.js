@@ -20,17 +20,17 @@ export default function StatsPopup(props) {
           props.gameStats[props.gameStats.length - 1].xguessed.includes(word)
         ) {
           wordCols.push(
-            <h6 style={{ color: "red", margin: 0, border: "solid black 1px" }}>
+            <h5 style={{ color: "red", margin: 0, border: "solid black 1px" }}>
               {word}
-            </h6>
+            </h5>
           );
         } else {
           wordCols.push(
-            <h6
+            <h5
               style={{ color: "green", margin: 0, border: "solid black 1px" }}
             >
               {word}
-            </h6>
+            </h5>
           );
         }
       });
@@ -96,13 +96,13 @@ export default function StatsPopup(props) {
       </div>
       <div>
         <h4>Your Last Game:</h4>
-        <h6 style={{ margin: 0, border: "solid black 1px" }}>
+        <h5 style={{ margin: 0, border: "solid black 1px" }}>
           {props.gameStats[props.gameStats.length - 1].game[0]}
-        </h6>
+        </h5>
         {wordCols}
-        <h6 style={{ margin: 0, border: "solid black 1px" }}>
+        <h5 style={{ margin: 0, border: "solid black 1px" }}>
           {props.gameStats[props.gameStats.length - 1].game[5]}
-        </h6>
+        </h5>
       </div>
     </div>
   );
