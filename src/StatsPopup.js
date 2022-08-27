@@ -40,8 +40,12 @@ export default function StatsPopup(props) {
       <div>
         On average you find{" "}
         <span id="gameWordAvg">
-          {props.gameStats.reduce((total, next) => total + next.gameStatus, 0) /
-            props.gameStats.length}
+          {(
+            props.gameStats.reduce(
+              (total, next) => total + next.gameStatus,
+              0
+            ) / props.gameStats.length
+          ).toFixed(2)}
           /4
         </span>{" "}
         words per game.
