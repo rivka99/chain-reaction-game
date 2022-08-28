@@ -24,7 +24,8 @@ export default function ChainRow(props) {
       //when full input is correct
       if (inputRow.value.toLowerCase() === props.word) {
         inputRow.disabled = true;
-        props.setCoins(props.betValue * 1 + props.coins * 1);
+        let newVal = props.betValue * 1 + props.coins * 1;
+        props.setCoins(newVal);
         //if the game is over notify player
         if (props.gameStatus === 3) {
           const gameStatEl1 = document.createElement("h2");
@@ -34,7 +35,7 @@ export default function ChainRow(props) {
           gameStatEl1.textContent = `Awesome, YOU WON! 4/4 correct!`;
           document.querySelector(".gameStatus").appendChild(gameStatEl1);
           setTimeout(function () {
-            setPlayed();
+            setPlayed(newVal);
           }, 2000);
         } else {
           props.setGameStatus(props.gameStatus + 1);
@@ -49,14 +50,14 @@ export default function ChainRow(props) {
       //when user guessed wrong can't bet anymore
       let diffVal = props.coins - props.betValue;
       props.setCoins(diffVal);
-      if (diffVal < 10) {
+      if (diffVal < 1) {
         inputRow.style.color = "red";
         props.disableForm();
         giveAnswers("red");
         const gameStatEl = document.createElement("h2");
         gameStatEl.textContent = `Game Over, you got ${props.gameStatus}/4 correct`;
         document.querySelector(".gameStatus").appendChild(gameStatEl);
-        setPlayed();
+        setPlayed(diffVal);
       } else {
         //when user still has coins to bet
         inputRow.style.color = "red";
@@ -75,7 +76,7 @@ export default function ChainRow(props) {
       }
     }
   }
-  function setPlayed() {
+  function setPlayed(coinValue) {
     let currentTime = new Date();
     let formInputs = document.querySelectorAll(".notGuessed");
     let notGuessed = [];
@@ -85,15 +86,15 @@ export default function ChainRow(props) {
     localStorage.setItem("lastplayed", JSON.stringify(currentTime));
 
     let coinDiff = props.gameStats.length
-      ? props.coins - props.gameStats[props.gameStats.length - 1].totalCoins
-      : props.coins - 200;
+      ? coinValue - props.gameStats[props.gameStats.length - 1].totalCoins
+      : coinValue - 200;
     // let highestCoins = props.gameStats[props.gameStats.length - 1].highestTotalCoins
     let totalHighestCoins = props.gameStats.length
-      ? props.coins >
+      ? coinValue >
         props.gameStats[props.gameStats.length - 1].highestTotalCoins
-        ? props.coins
+        ? coinValue
         : props.gameStats[props.gameStats.length - 1].highestTotalCoins
-      : props.coins;
+      : coinValue;
     let addedCoins = props.gameStats.length
       ? coinDiff > props.gameStats[props.gameStats.length - 1].highestCoins
         ? coinDiff
@@ -103,7 +104,7 @@ export default function ChainRow(props) {
       gameStatus: props.gameStatus,
       game: props.gameArray,
       xguessed: notGuessed,
-      totalCoins: props.coins,
+      totalCoins: coinValue,
       highestCoins: addedCoins,
       highestTotalCoins: totalHighestCoins,
     });
