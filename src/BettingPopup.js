@@ -4,9 +4,12 @@ export default function BettingPopup(props) {
   function onBetSubmit() {
     let bet = document.querySelector('input[name="betOptions"]:checked').value;
     let betCommand = document.querySelector(".betCommand");
-    props.setBetValue(bet);
+    props.setBetValue(Math.floor((bet / 100) * props.coins));
 
-    if (props.coins >= parseInt(bet) && props.gameStatus < 4) {
+    if (
+      props.coins >= parseInt(Math.floor((bet / 100) * props.coins)) &&
+      props.gameStatus < 4
+    ) {
       betCommand.textContent = "Make a bet";
       betCommand.style.color = "black";
       props.setBetRound(false);
@@ -36,7 +39,7 @@ export default function BettingPopup(props) {
             name="betOptions"
             value="10"
           />
-          <label for="10">10</label>
+          <label for="10">Bet 10% of your coins</label>
 
           <input
             className="radio-toolbar"
@@ -45,7 +48,7 @@ export default function BettingPopup(props) {
             name="betOptions"
             value="20"
           />
-          <label for="20">20</label>
+          <label for="20">Bet 20% of your coins</label>
 
           <input
             className="radio-toolbar"
@@ -54,7 +57,7 @@ export default function BettingPopup(props) {
             name="betOptions"
             value="40"
           />
-          <label for="40">40</label>
+          <label for="40">Bet 40% of your coins</label>
 
           <input
             className="radio-toolbar"
@@ -63,7 +66,7 @@ export default function BettingPopup(props) {
             name="betOptions"
             value="80"
           />
-          <label for="80">80</label>
+          <label for="80">Bet 80% of your coins</label>
 
           <input
             className="radio-toolbar"
@@ -72,7 +75,7 @@ export default function BettingPopup(props) {
             name="betOptions"
             value="100"
           />
-          <label for="100">100</label>
+          <label for="100">Bet 100% of your coins</label>
 
           <input type="submit" className="submit-btn" value="SUBMIT"></input>
         </form>

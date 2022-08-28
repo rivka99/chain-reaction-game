@@ -5,7 +5,6 @@ export default function StatsPopup(props) {
 
   let wordCols = [];
   if (gamesLength > 0) {
-    console.log(props.gameStats[props.gameStats.length - 1]);
     props.gameStats[props.gameStats.length - 1].game
       .slice(1, 5)
       .forEach((word) => {

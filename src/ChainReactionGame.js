@@ -17,13 +17,14 @@ export default function ChainReactionGame() {
     : [];
   const [betRound, setBetRound] = useState(false);
   const [betValue, setBetValue] = useState(0);
-  const [coins, setCoins] = useState(
-    !gameStats.length
+  const [
+    coins = !gameStats.length
       ? 200
       : gameStats[gameStats.length - 1].totalCoins >= 200
       ? gameStats[gameStats.length - 1].totalCoins
-      : 200
-  );
+      : 200,
+    setCoins,
+  ] = useState();
   const [data, setData] = useState(null);
   const [gameArray, setGameArray] = useState([]);
   const [gameStatus, setGameStatus] = useState(0);

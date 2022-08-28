@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 export default function ChainRow(props) {
   const [correctLetters, setCorrectLetters] = useState("");
   function onRowClick() {
@@ -24,12 +24,9 @@ export default function ChainRow(props) {
       //when full input is correct
       if (inputRow.value.toLowerCase() === props.word) {
         inputRow.disabled = true;
-        console.log(props.betValue);
         props.setCoins(props.betValue * 1 + props.coins * 1);
-        console.log(props.coins);
         //if the game is over notify player
         if (props.gameStatus === 3) {
-          console.log(props.coins);
           const gameStatEl1 = document.createElement("h2");
           props.setGameStatus(props.gameStatus + 1);
           inputRow.classList.remove("openRow");
@@ -50,8 +47,9 @@ export default function ChainRow(props) {
       }
     } else {
       //when user guessed wrong can't bet anymore
-      props.setCoins(props.coins - props.betValue);
-      if (props.coins < 10) {
+      let diffVal = props.coins - props.betValue;
+      props.setCoins(diffVal);
+      if (diffVal < 10) {
         inputRow.style.color = "red";
         props.disableForm();
         giveAnswers("red");
@@ -63,7 +61,6 @@ export default function ChainRow(props) {
         //when user still has coins to bet
         inputRow.style.color = "red";
         props.disableForm();
-
         (async () => {
           await runAnswerHint(function () {
             correctLetters !== ""
@@ -86,11 +83,10 @@ export default function ChainRow(props) {
       notGuessed.push(formInputs[i].value);
     }
     localStorage.setItem("lastplayed", JSON.stringify(currentTime));
-    console.log(props.coins);
+
     let coinDiff = props.gameStats.length
       ? props.coins - props.gameStats[props.gameStats.length - 1].totalCoins
       : props.coins - 200;
-    console.log(props.coins);
     // let highestCoins = props.gameStats[props.gameStats.length - 1].highestTotalCoins
     let totalHighestCoins = props.gameStats.length
       ? props.coins >
