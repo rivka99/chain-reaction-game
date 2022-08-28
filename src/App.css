@@ -16,9 +16,14 @@
 
 .rowInput{
   color: red;
-  height:50px;
+  min-height:50px;
   font-size:xx-large;
-  max-width: 90%;
+  max-width: 98%;
+}
+
+.input-div{
+  display: flex;
+  flex-direction: row;
 }
 
 .header-row{
@@ -154,9 +159,10 @@
 
 .game-container{
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 10%;
+  right: 20%;
+  left: 20%;
+  /* transform: translate(-50%, -50%); */
   max-width: 90%;
 }
 
@@ -201,6 +207,39 @@ input[type=submit]{
   width: 60%;
 }
 
+#hint-div{
+  border: 2px solid darkgreen;
+  background-color: white;
+  padding: 2px;
+}
+
+.alert {
+  padding: 20px;
+  background-color: #f44336; /* Red */
+  color: white;
+  margin-bottom: 15px;
+}
+
+.closebtn {
+  margin-left: 15px;
+  color: white;
+  font-weight: bold;
+  float: right;
+  font-size: 22px;
+  line-height: 20px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.closebtn:hover {
+  color: black;
+}
+
+@media screen {
+  @-ms-viewport {
+    width: device-width;
+  }
+}
 
 @media only screen and (max-width: 875px) {
   .popup-div, .stats-popup, .help-popup {

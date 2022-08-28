@@ -9,6 +9,7 @@ import BettingPopup from "./BettingPopup";
 import AfterGame from "./AfterGame";
 import Loader from "./Loader";
 import HelpPopup from "./HelpPopup";
+import HintBox from "./HintBox";
 import StatsPopup from "./StatsPopup";
 
 export default function ChainReactionGame() {
@@ -31,6 +32,8 @@ export default function ChainReactionGame() {
   const [help, setHelp] = useState(false);
   const [stats, setStats] = useState(false);
   const [guessClicked, setGuessClicked] = useState(0);
+  const [showInfo, setShowInfo] = useState(false);
+  const [hintWord, setHintWord] = useState("hello");
 
   let isoDate = new Date().toLocaleDateString();
   const apiKey =
@@ -143,9 +146,19 @@ export default function ChainReactionGame() {
                 setGuessClicked={setGuessClicked}
                 gameStats={gameStats}
                 gameArray={gameArray}
+                showInfo={showInfo}
+                setShowInfo={setShowInfo}
+                setHintWord={setHintWord}
               />
             ))}
             <ChainWord word={gameArray[5]} />
+          </div>
+          <div>
+            <HintBox
+              showInfo={showInfo}
+              setShowInfo={setShowInfo}
+              hintWord={hintWord}
+            />
           </div>
           {betRound && coins > 0 && (
             <BettingPopup

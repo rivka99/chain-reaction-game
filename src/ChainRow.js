@@ -33,6 +33,7 @@ export default function ChainRow(props) {
           inputRow.classList.remove("openRow");
           inputRow.classList.remove("notGuessed");
           gameStatEl1.textContent = `Awesome, YOU WON! 4/4 correct!`;
+          document.querySelector(".gameStatus").innerHTML = "";
           document.querySelector(".gameStatus").appendChild(gameStatEl1);
           setTimeout(function () {
             setPlayed(newVal);
@@ -130,7 +131,7 @@ export default function ChainRow(props) {
   };
 
   return (
-    <div>
+    <div className="input-div">
       <input
         role="chain-row"
         type="text"
@@ -139,6 +140,25 @@ export default function ChainRow(props) {
         onChange={inputChange}
         onClick={onRowClick}
       ></input>
+      <button
+        onClick={() => {
+          if (props.coins < 100) {
+            document.querySelector(
+              ".gameStatus"
+            ).innerHTML = `<div class="alert">
+            <span class="closebtn" onclick="this.parentElement.style.display='none';">&times;</span>
+            You do not have enough coins to get a hint.
+          </div>`;
+          } else {
+            document.querySelector(".gameStatus").innerHTML = "";
+            props.setShowInfo(true);
+            props.setCoins(props.coins - 100);
+            props.setHintWord(props.word);
+          }
+        }}
+      >
+        Get hints for 100 coins
+      </button>
     </div>
   );
 }
