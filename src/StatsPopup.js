@@ -35,8 +35,10 @@ export default function StatsPopup(props) {
         }
       });
     shareText += `⬛⬛⬛⬛⬛\n${
+      props.gameStats[props.gameStats.length - 1].moves
+    } moves\n${
       props.gameStats[props.gameStats.length - 1].totalCoins
-    } coins`;
+    } coins left.`;
   }
 
   if (!gamesLength) {

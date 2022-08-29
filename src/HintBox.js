@@ -10,13 +10,11 @@ export default function HintBox(props) {
           setHintWords([]);
           for (let i = 0; i < words.length; i++) {
             let noSpaceWord = words[i].word.replace(/ /g, "");
-            console.log(noSpaceWord, words[i].word);
             if (words[i].word.length - 1 === noSpaceWord.length) {
               setHintWords((hintWords) => [
                 ...hintWords,
                 `${words[i].word.replace(props.hintWord, "")} | `,
               ]);
-              console.log(hintWords);
             }
           }
         });

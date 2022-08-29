@@ -1,5 +1,5 @@
 import React from "react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 export default function ChainRow(props) {
   const [correctLetters, setCorrectLetters] = useState("");
   function onRowClick() {
@@ -110,6 +110,7 @@ export default function ChainRow(props) {
       totalCoins: coinValue,
       highestCoins: addedCoins,
       highestTotalCoins: totalHighestCoins,
+      moves: props.guessClicked,
     });
     localStorage.setItem("gamestats", JSON.stringify(props.gameStats));
   }
