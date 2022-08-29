@@ -1,5 +1,5 @@
 import React from "react";
-import ShareButton from "./ShareButton";
+import SharingButton from "./SharingButton";
 
 export default function StatsPopup(props) {
   let gamesLength = props.gameStats.length;
@@ -120,7 +120,7 @@ export default function StatsPopup(props) {
           {props.gameStats[props.gameStats.length - 1].game[5]}
         </h5>
       </div>
-      <ShareButton text={shareText} />
+      <SharingButton text={shareText} />
     </div>
   );
 }
