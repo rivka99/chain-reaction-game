@@ -145,7 +145,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 80vh;
+  height: 85vh;
   width: 100%;
 }
 
@@ -153,8 +153,20 @@
   margin-top: 3.5%;
   margin-bottom: 2%;
 }
+
 #found-stat{
   font-size: medium;
+}
+
+#copy-div button{
+  margin-top: 3%;
+  padding: 4px;
+  height: 5%;
+  font-size: large;
+  background-color:chartreuse;
+  cursor:pointer;
+  border: 1px solid black;
+  border-radius: 2px;
 }
 
 .game-container{

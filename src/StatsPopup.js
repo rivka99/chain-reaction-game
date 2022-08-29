@@ -1,8 +1,9 @@
 import React from "react";
+import ShareButton from "./ShareButton";
 
 export default function StatsPopup(props) {
   let gamesLength = props.gameStats.length;
-
+  let shareText = "⬛⬛⬛⬛⬛\n";
   let wordCols = [];
   if (gamesLength > 0) {
     props.gameStats[props.gameStats.length - 1].game
@@ -11,12 +12,14 @@ export default function StatsPopup(props) {
         if (
           props.gameStats[props.gameStats.length - 1].xguessed.includes(word)
         ) {
+          shareText += `🟥🟥🟥🟥🟥\n`;
           wordCols.push(
             <h5 style={{ color: "red", margin: 0, border: "solid black 1px" }}>
               {word}
             </h5>
           );
         } else {
+          shareText += `🟩🟩🟩🟩🟩\n`;
           wordCols.push(
             <h5
               style={{ color: "green", margin: 0, border: "solid black 1px" }}
@@ -26,6 +29,7 @@ export default function StatsPopup(props) {
           );
         }
       });
+    shareText += `⬛⬛⬛⬛⬛\n`;
   }
 
   if (!gamesLength) {
@@ -109,6 +113,7 @@ export default function StatsPopup(props) {
           {props.gameStats[props.gameStats.length - 1].game[5]}
         </h5>
       </div>
+      <ShareButton text={shareText} />
     </div>
   );
 }
