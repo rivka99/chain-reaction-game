@@ -146,7 +146,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   height: 85vh;
-  width: 100%;
+  min-width: 60vw;
 }
 
 .stats-popup h4, h3{
@@ -253,9 +253,12 @@ input[type=submit]{
   }
 }
 
-@media only screen and (max-width: 875px) {
+@media only screen and (max-width: 475px) {
   .popup-div, .stats-popup, .help-popup {
-    width: 90vw;
+    width: 98vw;
+    height: 80vh;
+    top: 35vh;
+    left: 34vw;
   }
   
   
