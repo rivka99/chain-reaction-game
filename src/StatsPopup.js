@@ -38,7 +38,7 @@ export default function StatsPopup(props) {
       props.gameStats[props.gameStats.length - 1].moves
     } moves\n${
       props.gameStats[props.gameStats.length - 1].totalCoins
-    } coins left.`;
+    } coins left.\n`;
   }
 
   if (!gamesLength) {
