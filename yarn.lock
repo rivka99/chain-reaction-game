@@ -4225,6 +4225,7 @@ __metadata:
     react-router-dom: ^6.3.0
     react-scripts: ^5.0.1
     react-test-renderer: ^18.2.0
+    react-web-share: ^1.1.6
     react-web-share-button: ^1.0.1
     web-vitals: ^2.1.4
   languageName: unknown
@@ -10997,6 +10998,15 @@ __metadata:
     react: =16.2.0
     react-dom: =16.2.0
   checksum: f0de263a001fd180f0310eb76ab6e4aafb4869f7793f4106120506b7d3e637fe0d00f9e687b34f4870ead632c32f0476bdd685899681e5b46a11005d035b4389
+  languageName: node
+  linkType: hard
+
+"react-web-share@npm:^1.1.6":
+  version: 1.1.6
+  resolution: "react-web-share@npm:1.1.6"
+  peerDependencies:
+    react: ">=17"
+  checksum: bd1cddda2729a681ece32a76d06ca87a5c25bfa75cb0f8c2787e42c73d07acf9b25735279a2a7c8dddfe92be03a2a7623ee964bd71a70e4c2c84456b7fcc807a
   languageName: node
   linkType: hard
 

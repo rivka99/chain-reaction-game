@@ -35,9 +35,7 @@ export default function ChainRow(props) {
           gameStatEl1.textContent = `Awesome, YOU WON! 4/4 correct!`;
           document.querySelector(".gameStatus").innerHTML = "";
           document.querySelector(".gameStatus").appendChild(gameStatEl1);
-          setTimeout(function () {
-            setPlayed(newVal);
-          }, 2000);
+          setPlayed(newVal);
         } else {
           props.setGameStatus(props.gameStatus + 1);
           inputRow.classList.remove("openRow");
@@ -101,8 +99,12 @@ export default function ChainRow(props) {
         ? coinDiff
         : props.gameStats[props.gameStats.length - 1].highestCoins
       : coinDiff;
+    let calcGameStatus =
+      document.querySelectorAll(".notGuessed").length === 0
+        ? 4
+        : props.gameStatus;
     props.gameStats.push({
-      gameStatus: props.gameStatus,
+      gameStatus: calcGameStatus,
       game: props.gameArray,
       xguessed: notGuessed,
       totalCoins: coinValue,

@@ -145,7 +145,7 @@
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  height: 85vh;
+  height: fit-content;
   min-width: 60vw;
 }
 
@@ -171,11 +171,11 @@
 
 .game-container{
   position: absolute;
-  top: 10%;
-  right: 20%;
-  left: 20%;
-  /* transform: translate(-50%, -50%); */
-  max-width: 90%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  max-width: 50%;
 }
 
 .radio-toolbar {
@@ -254,13 +254,16 @@ input[type=submit]{
 }
 
 @media only screen and (max-width: 475px) {
-  .popup-div, .stats-popup, .help-popup {
-    width: 98vw;
-    height: 80vh;
-    top: 35vh;
-    left: 34vw;
+  .after-game-row .stats-popup, .after-game-row .help-popup{
+    margin-left: 0;
+    width: 96vw;
+    height: fit-content;
   }
-  
+  .popup-div, .stats-popup, .help-popup {
+    width: 90vw;
+    margin-left: 10%;
+    height: fit-content;
+  }
   
 }
 
