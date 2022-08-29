@@ -6,6 +6,8 @@ To set up the tests run:
 npm install --save-dev react-test-renderer
 npm install --save-dev @testing-library/react
 
+Utilizes Airtable API as well as datamuse API
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
