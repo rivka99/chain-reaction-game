@@ -153,7 +153,9 @@ export default function ChainRow(props) {
             document.querySelector(".gameStatus").innerHTML = "";
             props.setShowInfo(true);
             props.setCoins(props.coins - 100);
-            props.setHintWord(props.word);
+            props.setHintWord(
+              props.gameArray[props.gameArray.indexOf(props.word) - 1]
+            );
           }
         }}
       >

@@ -14,7 +14,7 @@ export default function HintBox(props) {
             if (words[i].word.length - 1 === noSpaceWord.length) {
               setHintWords((hintWords) => [
                 ...hintWords,
-                `${words[i].word} | `,
+                `${words[i].word.replace(props.hintWord, "")} | `,
               ]);
               console.log(hintWords);
             }
