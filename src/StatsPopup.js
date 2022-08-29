@@ -3,7 +3,12 @@ import ShareButton from "./ShareButton";
 
 export default function StatsPopup(props) {
   let gamesLength = props.gameStats.length;
-  let shareText = "⬛⬛⬛⬛⬛\n";
+  let today = new Date();
+  let shareText = `${
+    today.getMonth() + 1
+  }-${today.getDate()}-${today.getFullYear()}      ${
+    props.gameStats[props.gameStats.length - 1].gameStatus
+  }/4\n⬛⬛⬛⬛⬛\n`;
   let wordCols = [];
   if (gamesLength > 0) {
     props.gameStats[props.gameStats.length - 1].game
@@ -29,7 +34,9 @@ export default function StatsPopup(props) {
           );
         }
       });
-    shareText += `⬛⬛⬛⬛⬛\n`;
+    shareText += `⬛⬛⬛⬛⬛\n${
+      props.gameStats[props.gameStats.length - 1].totalCoins
+    } coins`;
   }
 
   if (!gamesLength) {
