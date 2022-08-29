@@ -3,44 +3,48 @@ import ShareButton from "./ShareButton";
 
 export default function StatsPopup(props) {
   let gamesLength = props.gameStats.length;
-  let today = new Date();
-  let shareText = `${
-    today.getMonth() + 1
-  }-${today.getDate()}-${today.getFullYear()}      ${
-    props.gameStats[props.gameStats.length - 1].gameStatus
-  }/4\n⬛⬛⬛⬛⬛\n`;
-  let wordCols = [];
-  if (gamesLength > 0) {
-    props.gameStats[props.gameStats.length - 1].game
-      .slice(1, 5)
-      .forEach((word) => {
-        if (
-          props.gameStats[props.gameStats.length - 1].xguessed.includes(word)
-        ) {
-          shareText += `🟥🟥🟥🟥🟥\n`;
-          wordCols.push(
-            <h5 style={{ color: "red", margin: 0, border: "solid black 1px" }}>
-              {word}
-            </h5>
-          );
-        } else {
-          shareText += `🟩🟩🟩🟩🟩\n`;
-          wordCols.push(
-            <h5
-              style={{ color: "green", margin: 0, border: "solid black 1px" }}
-            >
-              {word}
-            </h5>
-          );
-        }
-      });
-    shareText += `⬛⬛⬛⬛⬛\n${
-      props.gameStats[props.gameStats.length - 1].moves
-    } moves\n${
-      props.gameStats[props.gameStats.length - 1].totalCoins
-    } coins left.\n`;
+  let today, shareText, wordCols;
+  if (gamesLength) {
+    today = new Date();
+    shareText = `${
+      today.getMonth() + 1
+    }-${today.getDate()}-${today.getFullYear()}      ${
+      props.gameStats[props.gameStats.length - 1].gameStatus
+    }/4\n⬛⬛⬛⬛⬛\n`;
+    wordCols = [];
+    if (gamesLength > 0) {
+      props.gameStats[props.gameStats.length - 1].game
+        .slice(1, 5)
+        .forEach((word) => {
+          if (
+            props.gameStats[props.gameStats.length - 1].xguessed.includes(word)
+          ) {
+            shareText += `🟥🟥🟥🟥🟥\n`;
+            wordCols.push(
+              <h5
+                style={{ color: "red", margin: 0, border: "solid black 1px" }}
+              >
+                {word}
+              </h5>
+            );
+          } else {
+            shareText += `🟩🟩🟩🟩🟩\n`;
+            wordCols.push(
+              <h5
+                style={{ color: "green", margin: 0, border: "solid black 1px" }}
+              >
+                {word}
+              </h5>
+            );
+          }
+        });
+      shareText += `⬛⬛⬛⬛⬛\n${
+        props.gameStats[props.gameStats.length - 1].moves
+      } moves\n${
+        props.gameStats[props.gameStats.length - 1].totalCoins
+      } coins left\n`;
+    }
   }
-
   if (!gamesLength) {
     return (
       <div className="stats-popup">
