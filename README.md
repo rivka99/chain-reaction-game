@@ -1,5 +1,7 @@
 Chain Reaction Game
 
+Deployed site: link6th.app
+
 This game is based on the Chain Reaction gameshow - you have to try to guess the words related to the word you are given, and connect that word to the next work, until you complete the chain. 
 
 To set up the tests run: 
