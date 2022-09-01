@@ -91,6 +91,7 @@
   border: 2px dashed saddlebrown ;
   
 }
+
 .popup-div{
   text-align: center;
   display: flex;
@@ -189,6 +190,11 @@
   position: fixed;
   width: 0;
 }
+
+/* .radio-toolbar .bet100 input[type="radio"] {
+  background-color: lightcoral;
+  border-color: #f44336;
+} */
 
 .radio-toolbar label {
     display: inline-block;

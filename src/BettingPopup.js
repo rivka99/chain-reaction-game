@@ -1,9 +1,26 @@
 import React from "react";
 
 export default function BettingPopup(props) {
+  let betEl = document.querySelectorAll('input[name="betOptions"]');
+  if (betEl) {
+    betEl.forEach((inp) => {
+      inp.addEventListener("change", () => {
+        if (
+          document.querySelector('input[name="betOptions"]:checked').value ==
+          100
+        ) {
+          document.querySelector("#bet100m").style.backgroundColor = "red";
+        } else {
+          document.querySelector("#bet100m").style.backgroundColor = "lavender";
+        }
+      });
+    });
+  }
+
   function onBetSubmit() {
     let bet = document.querySelector('input[name="betOptions"]:checked').value;
     let betCommand = document.querySelector(".betCommand");
+
     props.setBetValue(Math.floor((bet / 100) * props.coins));
 
     if (
@@ -69,13 +86,15 @@ export default function BettingPopup(props) {
           <label for="80">Bet 80% of your coins</label>
 
           <input
-            className="radio-toolbar"
+            className="radio-toolbar bet100"
             type="radio"
             id="100"
             name="betOptions"
             value="100"
           />
-          <label for="100">Bet 100% of your coins</label>
+          <label for="100" id="bet100m">
+            Bet 100% of your coins
+          </label>
 
           <input type="submit" className="submit-btn" value="SUBMIT"></input>
         </form>
